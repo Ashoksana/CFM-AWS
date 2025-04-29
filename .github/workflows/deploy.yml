@@ -28,3 +28,8 @@ jobs:
           --template-file main.yml \
           --capabilities CAPABILITY_NAMED_IAM \
           --parameter-overrides Environment=Dev
+
+    - name: Debug CloudFormation Events on Failure
+      if: failure()
+      run: |
+        aws cloudformation describe-stack-events --stack-name MyInfraStack
