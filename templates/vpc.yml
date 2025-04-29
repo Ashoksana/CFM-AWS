@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: VPC Template
+
+# Import Parameters and Mappings
+!Import 'parameters/parameters.yml'
+!Import 'mappings/vpc-mappings.yml'
+
+Resources:
+  DemoVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap [VPCConfig, !Ref Environment, CIDR]
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          value: !Sub "${Environment}-VPC"
+
+Outputs:
+  VpcId:
+    Description: VPC ID
+    Value: !Ref DemoVPC
+    Export:
+    Name: !Sub "${Environment}-VPCId"
+

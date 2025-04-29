@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Root Stack to deploy complete Infrastructure
+
+Parameters:
+  Environment:
+    Type: String
+    Description: Deployment Environment
+    AllowedValues:
+      - Dev
+      - Staging
+      - Prod
+    Default: Dev
+
+Resources:
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://raw.githubusercontent.com/your-username/your-repo/branch/templates/vpc.yaml
+      Parameters:
+        Environment: !Ref Environment
+
+  SGStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://raw.githubusercontent.com/your-username/your-repo/branch/templates/sg.yaml
+      Parameters: 
+        Environment: !Ref Environment 
+
+  EC2Stack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: https://raw.githubusercontent.com/your-username/your-repo/branch/templates/ec2.yaml
+      Parameters: 
+        Environment: !Ref Environment 

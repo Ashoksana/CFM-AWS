@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 Instance Template
+
+!Import 'parameters/parameters.yml'
+!Import 'mappings/ec2-mappings.yml'
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !FindInMap [InstanceConfig, !Ref Environment, InstanceType]
+      ImageId: !FindInMap [InstanceConfig, !Ref Environment, AMI]
+      NetworkInterfaces:
+        - AssociatePublicIpAddress: true
+          DeviceIndex: 0
+          GroupSet:
+            - !ImportValue
+              Fn::Sub: "${Environment}-SGId"
+      Tags:
+        - Key: Name
+          Value: !Sub "${Environment}-EC2"

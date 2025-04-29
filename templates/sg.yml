@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Security Group Template
+
+!Import 'parameters/parameters.yaml'
+
+Resources:
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow SSH and HTTP access
+      VpcId: !ImportValue
+        Fn::Sub: "${Environment}-VPCId"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      Tags:
+        - Key: Name
+          Value: !Sub "${Environment}-SG"
+
+Outputs:
+  SecurityGroupId:
+    Description: Security Group ID
+    Value: !Ref InstanceSecurityGroup
+    Export:
+      Name: !Sub "${Environment}-SGId"

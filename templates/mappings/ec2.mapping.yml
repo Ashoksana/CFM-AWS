@@ -1,0 +1,10 @@
+  InstanceConfig:
+    Dev:
+      InstanceType: t2.micro
+      AMI: ami-0abcdef1234567890
+    Staging:
+      InstanceType: t2.micro
+      AMI: ami-0abcdef1234567890
+    Prod:
+      InstanceType: t2.micro
+      AMI: ami-0abcdef1234567890

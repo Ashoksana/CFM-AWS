@@ -1,0 +1,8 @@
+Parameters:
+  Environment:
+    Type: String
+    Description:
+    AllowedValues:
+      - Dev
+      - Staging
+      - Prod
