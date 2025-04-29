@@ -15,20 +15,20 @@ Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://github.com/Ashoksana/CFM-AWS/blob/main/templates/vpc.yml
+      TemplateURL: https://raw.githubusercontent.com/Ashoksana/CFM-AWS/main/templates/vpc.yml
       Parameters:
         Environment: !Ref Environment
 
   SGStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://github.com/Ashoksana/CFM-AWS/blob/main/templates/sg.yml
+      TemplateURL: https://raw.githubusercontent.com/Ashoksana/CFM-AWS/main/templates/sg.yml
       Parameters: 
         Environment: !Ref Environment 
 
   EC2Stack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://github.com/Ashoksana/CFM-AWS/blob/main/templates/ec2.yml
+      TemplateURL: https://raw.githubusercontent.com/Ashoksana/CFM-AWS/main/templates/ec2.yml
       Parameters: 
         Environment: !Ref Environment 
