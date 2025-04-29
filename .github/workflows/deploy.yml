@@ -19,12 +19,12 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1   # replace with your AWS region
+        aws-region: ap-south-1   # replace with your AWS region
 
     - name: Deploy CloudFormation Root Stack
       run: |
         aws cloudformation deploy \
           --stack-name MyInfraStack \
-          --template-file root-stack.yaml \
+          --template-file main.yml \
           --capabilities CAPABILITY_NAMED_IAM \
           --parameter-overrides Environment=Dev
